@@ -130,21 +130,21 @@ class SimpleUNet(nn.Module):
         else:
             self.label_embedding = None
 
-        # Increased channels
-        self.inc = Block(in_channels, 64, time_emb_dim, label_emb_dim)
-        self.down1 = Downsample(64, 128)
-        self.block1 = Block(128, 128, time_emb_dim, label_emb_dim)
-        self.down2 = Downsample(128, 256)
-        self.block2 = Block(256, 256, time_emb_dim, label_emb_dim)
+        # Increased channels for a larger model
+        self.inc = Block(in_channels, 128, time_emb_dim, label_emb_dim)
+        self.down1 = Downsample(128, 256)
+        self.block1 = Block(256, 256, time_emb_dim, label_emb_dim)
+        self.down2 = Downsample(256, 512)
+        self.block2 = Block(512, 512, time_emb_dim, label_emb_dim)
 
-        self.mid = Block(256, 256, time_emb_dim, label_emb_dim)
+        self.mid = Block(512, 512, time_emb_dim, label_emb_dim)
 
-        self.up1 = Upsample(256, 128)
-        self.block3 = Block(128 + 128, 128, time_emb_dim, label_emb_dim) # 128 (from upsample) + 128 (from skip connection)
-        self.up2 = Upsample(128, 64)
-        self.block4 = Block(64 + 64, 64, time_emb_dim, label_emb_dim) # 64 (from upsample) + 64 (from skip connection)
+        self.up1 = Upsample(512, 256)
+        self.block3 = Block(256 + 256, 256, time_emb_dim, label_emb_dim) # 256 (from upsample) + 256 (from skip connection)
+        self.up2 = Upsample(256, 128)
+        self.block4 = Block(128 + 128, 128, time_emb_dim, label_emb_dim) # 128 (from upsample) + 128 (from skip connection)
 
-        self.outc = nn.Conv2d(64, out_channels, kernel_size=1)
+        self.outc = nn.Conv2d(128, out_channels, kernel_size=1)
 
     def forward(self, x, t, labels=None):
         time_emb = self.time_embedding(t)
