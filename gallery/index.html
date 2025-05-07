@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Texture Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Minecraft Texture Generator</h1>
+
+        <div class="controls">
+            <label for="label-select">Choose a texture type:</label>
+            <select id="label-select">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+            <button id="generate-btn">Generate Texture</button>
+        </div>
+
+        <div class="image-container">
+            <img id="generated-image" src="" alt="Generated Minecraft Texture">
+            <p id="placeholder-text">Click "Generate Texture" to create an image.</p>
+        </div>
+
+        <div id="loading" class="hidden">Generating...</div>
+        <div id="error-message" class="hidden"></div>
+
+        <div class="gallery-container">
+            <h2>Generated Textures Gallery</h2>
+            <div id="image-gallery">
+                <!-- Generated images will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

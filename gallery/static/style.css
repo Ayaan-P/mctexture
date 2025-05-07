@@ -1,0 +1,117 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+    color: #333;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+select, button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.image-container {
+    margin-top: 20px;
+    border: 1px dashed #ccc;
+    padding: 20px;
+    min-height: 100px; /* Placeholder height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Needed for absolute positioning of placeholder */
+}
+
+#generated-image {
+    max-width: 100%;
+    max-height: 256px; /* Limit image size */
+    display: none; /* Hidden by default */
+}
+
+#placeholder-text {
+    color: #888;
+    font-style: italic;
+}
+
+#loading {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+#error-message {
+    margin-top: 15px;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.gallery-container {
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.gallery-container h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+#image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Space between images */
+    margin-top: 20px;
+}
+
+.gallery-image {
+    width: 64px; /* Smaller size for gallery thumbnails */
+    height: 64px;
+    object-fit: cover; /* Crop image to fit */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

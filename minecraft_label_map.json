@@ -1,0 +1,19 @@
+{
+    "utility": 0,
+    "other": 1,
+    "mineral/block": 2,
+    "stone/brick": 3,
+    "food": 4,
+    "ground": 5,
+    "redstone/mechanism": 6,
+    "plant": 7,
+    "wood": 8,
+    "ice/snow": 9,
+    "glass": 10,
+    "plant/food": 11,
+    "mob_spawner": 12,
+    "rail/wire": 13,
+    "shulker": 14,
+    "slime": 15,
+    "explosive": 16
+}

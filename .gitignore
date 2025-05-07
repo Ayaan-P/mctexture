@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Machine Learning
+simple_diffusion_model.pth
+minecraft_textures_dataset.npy
+minecraft_textures_labels.npy
+
+# Generated Images
+gallery/generated_images/
+texture_data/
+
+# Operating System
+.DS_Store
+Thumbs.db
