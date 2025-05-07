@@ -76,6 +76,3 @@ This project implements a web application using Flask to interact with a simple 
 -   `GET /list_generated_images`: Returns a JSON object containing a list of relative URLs for images found in the `gallery/generated_images/` directory.
 -   `POST /generate`: Accepts a JSON body with a single key, `label_id` (integer), corresponding to the desired texture label. It triggers the diffusion model to generate an image for that label, saves it to `gallery/generated_images/`, and returns a JSON object with the `image_url` of the newly created image.
 
-## License
-
-(Add license information here)
