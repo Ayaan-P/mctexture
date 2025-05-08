@@ -29,10 +29,18 @@ This project implements a web application using Flask to interact with a simple 
 ## Example Images
 
 Here are examples of the original texture and the corresponding generated texture:
+
 ![Original Image](minecraft_16x16_block_textures/tnt_side.png)
 ![Generated Image](gallery/generated_images/explosive_1746590472.png)
 
+![Original Image](minecraft_16x16_block_textures/rail_normal.png)
+![Generated Image](gallery/generated_images/rail_wire_1746592427.png)
 
+![Original Image](minecraft_16x16_block_textures/glass_green.png)
+![Generated Image](gallery/generated_images/glass_1746592383.png)
+
+![Original Image](minecraft_16x16_block_textures/frosted_ice_0.png)
+![Generated Image](gallery/generated_images/ice_snow_1746591647.png)
 
 ## Setup and Installation
 
