@@ -8,7 +8,6 @@ import torch.nn.functional as F # Use torch.nn.functional for padding
 import json
 from torch.utils.data import Dataset, DataLoader
 
-# --- Configuration ---
 DATASET_PATH_DATA = 'minecraft_textures_dataset.npy'
 DATASET_PATH_LABELS = 'minecraft_textures_labels.npy'
 LABEL_MAP_PATH = 'minecraft_label_map.json'
@@ -22,9 +21,7 @@ TIME_EMB_DIM = 32
 LABEL_EMB_DIM = 32 # Dimension for label embedding
 MODEL_SAVE_PATH = 'simple_diffusion_model.pth' # Path to save the trained model
 
-# --- Diffusion Process Helper Functions ---
-
-def linear_beta_schedule(timesteps):
+def linear_beta_schedule(timesteps): #cosine was worse for some reason
     """
     Linear schedule for beta values.
     """
@@ -54,8 +51,7 @@ log_one_minus_alphas_cumprod = torch.log(1. - alphas_cumprod)
 sqrt_recip_alphas = torch.sqrt(1. / alphas)
 variance = betas * (1. - alphas_cumprod_prev) / (1. - alphas_cumprod)
 
-# --- Model Definition (Simple U-Net) ---
-
+# Hybrid Sinusiodal and Learned timeembeddings 
 class TimeEmbedding(nn.Module):
     def __init__(self, dim):
         super().__init__()
@@ -174,8 +170,6 @@ class SimpleUNet(nn.Module):
         output = self.outc(x)
         return output
 
-# --- Data Loading and Preprocessing ---
-
 class TextureDataset(Dataset):
     def __init__(self, data_path, label_path):
         self.data = np.load(data_path)
@@ -199,8 +193,6 @@ def load_dataset(data_path, label_path):
     """
     dataset = TextureDataset(data_path, label_path)
     return dataset
-
-# --- Training Function ---
 
 def train(model, dataloader, optimizer, epochs, timesteps, device):
     model.train()
@@ -234,8 +226,6 @@ def train(model, dataloader, optimizer, epochs, timesteps, device):
                 print(f"Epoch {epoch}/{epochs}, Step {step}, Loss: {loss.item():.4f}")
 
         print(f"Epoch {epoch}/{epochs} finished, Loss: {loss.item():.4f}")
-
-# --- Sampling Function ---
 
 @torch.no_grad()
 def sample(model, shape, timesteps, device, labels=None):
@@ -275,8 +265,6 @@ def sample(model, shape, timesteps, device, labels=None):
     img = torch.clamp(img, 0, 255).to(torch.uint8)
     return img
 
-# --- Main Execution ---
-
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
@@ -306,14 +294,14 @@ if __name__ == "__main__":
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
     print("Model saved.")
 
-    # # Sample some images (e.g., 2 of each class)
+    # # Sample some images 
     # print("Sampling new images...")
     # sample_batch_size_per_class = 2
     # sampled_images = []
     # output_base_dir = 'generated_textures_conditional'
     # os.makedirs(output_base_dir, exist_ok=True)
 
-    # # Create a reverse label map for saving
+    # 
     # reverse_label_map = {v: k for k, v in label_map.items()}
 
     # for label_id in range(num_classes):
